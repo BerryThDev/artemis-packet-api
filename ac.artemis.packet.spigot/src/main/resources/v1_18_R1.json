@@ -1,6 +1,91 @@
 {
-  "version": "V_1_17",
+  "version": "V_1_18",
   "formatMap": {
+    "STATUS": {
+      "state": "STATUS",
+      "inboundPackets": {
+        "0": {
+          "id": 0,
+          "clazz": 2002,
+          "nmsName": "PacketStatusInStart"
+        },
+        "1": {
+          "id": 1,
+          "clazz": 2001,
+          "nmsName": "PacketStatusInPing"
+        }
+      },
+      "outboundPackets": {
+        "0": {
+          "id": 0,
+          "clazz": 5001,
+          "nmsName": "PacketStatusOutServerInfo"
+        },
+        "1": {
+          "id": 1,
+          "clazz": 5002,
+          "nmsName": "PacketStatusOutPong"
+        }
+      }
+    },
+    "LOGIN": {
+      "state": "LOGIN",
+      "inboundPackets": {
+        "0": {
+          "id": 0,
+          "clazz": 2,
+          "nmsName": "PacketLoginInStart"
+        },
+        "1": {
+          "id": 1,
+          "clazz": 1,
+          "nmsName": "PacketLoginInEncryptionBegin"
+        },
+        "2": {
+          "id": 2,
+          "clazz": 3,
+          "nmsName": "PacketLoginInCustomPayload"
+        }
+      },
+      "outboundPackets": {
+        "0": {
+          "id": 0,
+          "clazz": 3001,
+          "nmsName": "PacketLoginOutDisconnect"
+        },
+        "1": {
+          "id": 1,
+          "clazz": 3002,
+          "nmsName": "PacketLoginOutEncryptionBegin"
+        },
+        "2": {
+          "id": 2,
+          "clazz": 3004,
+          "nmsName": "PacketLoginOutSuccess"
+        },
+        "3": {
+          "id": 3,
+          "clazz": 3003,
+          "nmsName": "PacketLoginOutSetCompression"
+        },
+        "4": {
+          "id": 4,
+          "clazz": 3005,
+          "nmsName": "PacketLoginOutCustomPayload"
+        }
+      }
+    },
+    "HANDSHAKE": {
+      "state": "HANDSHAKE",
+      "inboundPackets": {
+        "0": {
+          "id": 0,
+          "clazz": 0,
+          "nmsName": "PacketHandshakingInSetProtocol"
+        }
+      },
+      "outboundPackets": {}
+    },
     "PLAY": {
       "state": "PLAY",
       "inboundPackets": {
@@ -106,7 +191,7 @@
         },
         "20": {
           "id": 20,
-          "clazz": 3,
+          "clazz": 4103,
           "nmsName": "d"
         },
         "21": {
@@ -152,7 +237,7 @@
         "29": {
           "id": 29,
           "clazz": 1051,
-          "nmsName": "PacketPlayInPong"
+          "nmsName": "PacketPlayInPongPacket"
         },
         "30": {
           "id": 30,
@@ -274,7 +359,7 @@
         "5": {
           "id": 5,
           "clazz": 4100,
-          "nmsName": "PacketPlayOutAddVibrationSignal"
+          "nmsName": "PacketPlayOutAddVibrationSignalPacket"
         },
         "6": {
           "id": 6,
@@ -329,7 +414,7 @@
         "16": {
           "id": 16,
           "clazz": 4101,
-          "nmsName": "PacketPlayOutClearTitles"
+          "nmsName": "PacketPlayOutClearTitlesPacket"
         },
         "17": {
           "id": 17,
@@ -409,7 +494,7 @@
         "32": {
           "id": 32,
           "clazz": 4106,
-          "nmsName": "PacketPlayOutInitializeBorder"
+          "nmsName": "PacketPlayOutInitializeBorderPacket"
         },
         "33": {
           "id": 33,
@@ -418,8 +503,8 @@
         },
         "34": {
           "id": 34,
-          "clazz": 4014,
-          "nmsName": "PacketPlayOutMapChunk"
+          "clazz": 4116,
+          "nmsName": "PacketPlayOutLevelChunkWithLight"
         },
         "35": {
           "id": 35,
@@ -683,170 +768,90 @@
         },
         "87": {
           "id": 87,
-          "clazz": 4113,
-          "nmsName": "PacketPlayOutSetSubtitleText"
+          "clazz": 4117,
+          "nmsName": "PacketPlayOutSetSimulationDistance"
         },
         "88": {
           "id": 88,
-          "clazz": 4085,
-          "nmsName": "PacketPlayOutUpdateTime"
+          "clazz": 4113,
+          "nmsName": "PacketPlayOutSetSubtitleText"
         },
         "89": {
           "id": 89,
-          "clazz": 4114,
-          "nmsName": "PacketPlayOutSetTitleText"
+          "clazz": 4085,
+          "nmsName": "PacketPlayOutUpdateTime"
         },
         "90": {
           "id": 90,
-          "clazz": 4115,
-          "nmsName": "PacketPlayOutSetTitlesAnimation"
+          "clazz": 4114,
+          "nmsName": "PacketPlayOutSetTitleText"
         },
         "91": {
           "id": 91,
-          "clazz": 4063,
-          "nmsName": "PacketPlayOutEntitySound"
+          "clazz": 4115,
+          "nmsName": "PacketPlayOutSetTitlesAnimation"
         },
         "92": {
           "id": 92,
-          "clazz": 4064,
-          "nmsName": "PacketPlayOutNamedSoundEffect"
+          "clazz": 4063,
+          "nmsName": "PacketPlayOutEntitySound"
         },
         "93": {
           "id": 93,
-          "clazz": 4065,
-          "nmsName": "PacketPlayOutStopSound"
+          "clazz": 4064,
+          "nmsName": "PacketPlayOutNamedSoundEffect"
         },
         "94": {
           "id": 94,
-          "clazz": 4048,
-          "nmsName": "PacketPlayOutPlayerListHeaderFooter"
+          "clazz": 4065,
+          "nmsName": "PacketPlayOutStopSound"
         },
         "95": {
           "id": 95,
-          "clazz": 4043,
-          "nmsName": "PacketPlayOutNBTQuery"
+          "clazz": 4048,
+          "nmsName": "PacketPlayOutPlayerListHeaderFooter"
         },
         "96": {
           "id": 96,
-          "clazz": 4017,
-          "nmsName": "PacketPlayOutCollect"
+          "clazz": 4043,
+          "nmsName": "PacketPlayOutNBTQuery"
         },
         "97": {
           "id": 97,
-          "clazz": 4032,
-          "nmsName": "PacketPlayOutEntityTeleport"
+          "clazz": 4017,
+          "nmsName": "PacketPlayOutCollect"
         },
         "98": {
           "id": 98,
-          "clazz": 4002,
-          "nmsName": "PacketPlayOutAdvancements"
+          "clazz": 4032,
+          "nmsName": "PacketPlayOutEntityTeleport"
         },
         "99": {
           "id": 99,
-          "clazz": 4078,
-          "nmsName": "PacketPlayOutUpdateAttributes"
+          "clazz": 4002,
+          "nmsName": "PacketPlayOutAdvancements"
         },
         "100": {
           "id": 100,
-          "clazz": 4098,
-          "nmsName": "PacketPlayOutEntityEffect"
+          "clazz": 4078,
+          "nmsName": "PacketPlayOutUpdateAttributes"
         },
         "101": {
           "id": 101,
-          "clazz": 4052,
-          "nmsName": "PacketPlayOutRecipeUpdate"
+          "clazz": 4098,
+          "nmsName": "PacketPlayOutEntityEffect"
         },
         "102": {
           "id": 102,
+          "clazz": 4052,
+          "nmsName": "PacketPlayOutRecipeUpdate"
+        },
+        "103": {
+          "id": 103,
           "clazz": 4042,
           "nmsName": "PacketPlayOutTags"
         }
       }
-    },
-    "LOGIN": {
-      "state": "LOGIN",
-      "inboundPackets": {
-        "0": {
-          "id": 0,
-          "clazz": 2,
-          "nmsName": "PacketLoginInStart"
-        },
-        "1": {
-          "id": 1,
-          "clazz": 1,
-          "nmsName": "PacketLoginInEncryptionBegin"
-        },
-        "2": {
-          "id": 2,
-          "clazz": 3,
-          "nmsName": "PacketLoginInCustomPayload"
-        }
-      },
-      "outboundPackets": {
-        "0": {
-          "id": 0,
-          "clazz": 3001,
-          "nmsName": "PacketLoginOutDisconnect"
-        },
-        "1": {
-          "id": 1,
-          "clazz": 3002,
-          "nmsName": "PacketLoginOutEncryptionBegin"
-        },
-        "2": {
-          "id": 2,
-          "clazz": 3004,
-          "nmsName": "PacketLoginOutSuccess"
-        },
-        "3": {
-          "id": 3,
-          "clazz": 3003,
-          "nmsName": "PacketLoginOutSetCompression"
-        },
-        "4": {
-          "id": 4,
-          "clazz": 3005,
-          "nmsName": "PacketLoginOutCustomPayload"
-        }
-      }
-    },
-    "STATUS": {
-      "state": "STATUS",
-      "inboundPackets": {
-        "0": {
-          "id": 0,
-          "clazz": 2002,
-          "nmsName": "PacketStatusInStart"
-        },
-        "1": {
-          "id": 1,
-          "clazz": 2001,
-          "nmsName": "PacketStatusInPing"
-        }
-      },
-      "outboundPackets": {
-        "0": {
-          "id": 0,
-          "clazz": 5001,
-          "nmsName": "PacketStatusOutServerInfo"
-        },
-        "1": {
-          "id": 1,
-          "clazz": 5002,
-          "nmsName": "PacketStatusOutPong"
-        }
-      }
-    },
-    "HANDSHAKE": {
-      "state": "HANDSHAKE",
-      "inboundPackets": {
-        "0": {
-          "id": 0,
-          "clazz": 0,
-          "nmsName": "PacketHandshakingInSetProtocol"
-        }
-      },
-      "outboundPackets": {}
     }
   }
 }

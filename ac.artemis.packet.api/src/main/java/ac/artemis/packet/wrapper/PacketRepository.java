@@ -217,6 +217,8 @@ public class PacketRepository {
         repository.put(SERVER_PLAY + 113, PacketPlayServerSetSubtitleText.class);
         repository.put(SERVER_PLAY + 114, PacketPlayServerSetTitleText.class);
         repository.put(SERVER_PLAY + 115, PacketPlayServerSetTitlesAnimation.class);
+        repository.put(SERVER_PLAY + 116, PacketPlayServerLevelChunkWithLight.class);
+        repository.put(SERVER_PLAY + 117, PacketPlayServerSetSimulationDistance.class);
 
         repository.put(SERVER_STATUS + 1, PacketStatusServerInfo.class);
         repository.put(SERVER_STATUS + 2, PacketStatusServerPong.class);
