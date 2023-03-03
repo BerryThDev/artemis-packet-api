@@ -89,6 +89,10 @@ public class PacketRepository {
         repository.put(CLIENT_PLAY + 49, PacketPlayClientBlockDig.class);
         repository.put(CLIENT_PLAY + 50, PacketPlayClientItemUse.class);
         repository.put(CLIENT_PLAY + 51, PacketPlayClientPong.class);
+        repository.put(CLIENT_PLAY + 52, PacketPlayClientChatAck.class);
+        repository.put(CLIENT_PLAY + 53, PacketPlayClientChatCommand.class);
+        repository.put(CLIENT_PLAY + 54, PacketPlayClientChatPreview.class);
+        repository.put(CLIENT_PLAY + 55, PacketPlayClientChatSessionUpdate.class);
 
         // Client bound status
         repository.put(CLIENT_STATUS + 1, PacketStatusClientPing.class);
@@ -219,6 +223,19 @@ public class PacketRepository {
         repository.put(SERVER_PLAY + 115, PacketPlayServerSetTitlesAnimation.class);
         repository.put(SERVER_PLAY + 116, PacketPlayServerLevelChunkWithLight.class);
         repository.put(SERVER_PLAY + 117, PacketPlayServerSetSimulationDistance.class);
+        repository.put(SERVER_PLAY + 118, PacketPlayServerBlockChangedAck.class);
+        repository.put(SERVER_PLAY + 119, PacketPlayServerChatPreview.class);
+        repository.put(SERVER_PLAY + 120, PacketPlayServerCustomChatCompletions.class);
+        repository.put(SERVER_PLAY + 121, PacketPlayServerDeleteChat.class);
+        repository.put(SERVER_PLAY + 122, PacketPlayServerPlayerChatHeader.class);
+        repository.put(SERVER_PLAY + 123, PacketPlayServerPlayerChat.class);
+        repository.put(SERVER_PLAY + 124, PacketPlayServerData.class);
+        repository.put(SERVER_PLAY + 125, PacketPlayServerSetDisplayChatPreview.class);
+        repository.put(SERVER_PLAY + 126, PacketPlayServerSystemChat.class);
+        repository.put(SERVER_PLAY + 127, PacketPlayServerDisguisedChat.class);
+        repository.put(SERVER_PLAY + 128, PacketPlayServerPlayerInfoRemove.class);
+        repository.put(SERVER_PLAY + 129, PacketPlayServerPlayerInfoUpdate.class);
+        repository.put(SERVER_PLAY + 130, PacketPlayServerUpdateEnabledFeatures.class);
 
         repository.put(SERVER_STATUS + 1, PacketStatusServerInfo.class);
         repository.put(SERVER_STATUS + 2, PacketStatusServerPong.class);

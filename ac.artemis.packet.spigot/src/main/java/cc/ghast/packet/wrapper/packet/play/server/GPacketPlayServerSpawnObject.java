@@ -30,6 +30,7 @@ public class GPacketPlayServerSpawnObject extends GPacket implements PacketPlayS
     private double z;
     private float pitch;
     private float yaw;
+    private Optional<Float> headYaw;
     private int data;
     private Optional<Short> velocityX;
     private Optional<Short> velocityY;
@@ -55,7 +56,14 @@ public class GPacketPlayServerSpawnObject extends GPacket implements PacketPlayS
 
         this.pitch = byteBuf.readByte() / 256.0F * 360.0F;
         this.yaw = byteBuf.readByte() / 256.0F * 360.0F;
-        this.data = byteBuf.readInt();
+
+        if(version.isOrAbove(ProtocolVersion.V_1_19)) {
+            this.headYaw = Optional.of(byteBuf.readByte() / 256.0F * 360.0F);
+            this.data = byteBuf.readVarInt();
+        } else {
+            this.headYaw = Optional.empty();
+            this.data = byteBuf.readInt();
+        }
 
         if (version.isOrAbove(ProtocolVersion.V1_8) && data > 0) {
             this.velocityX = Optional.of(byteBuf.readShort());

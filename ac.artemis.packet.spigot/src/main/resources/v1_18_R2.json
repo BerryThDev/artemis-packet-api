@@ -1,6 +1,17 @@
 {
-  "version": "V_1_18",
+  "version": "V_1_18_2",
   "formatMap": {
+    "HANDSHAKE": {
+      "state": "HANDSHAKE",
+      "inboundPackets": {
+        "0": {
+          "id": 0,
+          "clazz": 0,
+          "nmsName": "PacketHandshakingInSetProtocol"
+        }
+      },
+      "outboundPackets": {}
+    },
     "STATUS": {
       "state": "STATUS",
       "inboundPackets": {
@@ -27,64 +38,6 @@
           "nmsName": "PacketStatusOutPong"
         }
       }
-    },
-    "LOGIN": {
-      "state": "LOGIN",
-      "inboundPackets": {
-        "0": {
-          "id": 0,
-          "clazz": 2,
-          "nmsName": "PacketLoginInStart"
-        },
-        "1": {
-          "id": 1,
-          "clazz": 1,
-          "nmsName": "PacketLoginInEncryptionBegin"
-        },
-        "2": {
-          "id": 2,
-          "clazz": 3,
-          "nmsName": "PacketLoginInCustomPayload"
-        }
-      },
-      "outboundPackets": {
-        "0": {
-          "id": 0,
-          "clazz": 3001,
-          "nmsName": "PacketLoginOutDisconnect"
-        },
-        "1": {
-          "id": 1,
-          "clazz": 3002,
-          "nmsName": "PacketLoginOutEncryptionBegin"
-        },
-        "2": {
-          "id": 2,
-          "clazz": 3004,
-          "nmsName": "PacketLoginOutSuccess"
-        },
-        "3": {
-          "id": 3,
-          "clazz": 3003,
-          "nmsName": "PacketLoginOutSetCompression"
-        },
-        "4": {
-          "id": 4,
-          "clazz": 3005,
-          "nmsName": "PacketLoginOutCustomPayload"
-        }
-      }
-    },
-    "HANDSHAKE": {
-      "state": "HANDSHAKE",
-      "inboundPackets": {
-        "0": {
-          "id": 0,
-          "clazz": 0,
-          "nmsName": "PacketHandshakingInSetProtocol"
-        }
-      },
-      "outboundPackets": {}
     },
     "PLAY": {
       "state": "PLAY",
@@ -658,8 +611,8 @@
         },
         "65": {
           "id": 65,
-          "clazz": 4107,
-          "nmsName": "PacketPlayOutSetActionBarText"
+          "clazz": 4105,
+          "nmsName": "PacketPlayOutPlayerCombatKill"
         },
         "66": {
           "id": 66,
@@ -850,6 +803,53 @@
           "id": 103,
           "clazz": 4042,
           "nmsName": "PacketPlayOutTags"
+        }
+      }
+    },
+    "LOGIN": {
+      "state": "LOGIN",
+      "inboundPackets": {
+        "0": {
+          "id": 0,
+          "clazz": 2,
+          "nmsName": "PacketLoginInStart"
+        },
+        "1": {
+          "id": 1,
+          "clazz": 1,
+          "nmsName": "PacketLoginInEncryptionBegin"
+        },
+        "2": {
+          "id": 2,
+          "clazz": 3,
+          "nmsName": "PacketLoginInCustomPayload"
+        }
+      },
+      "outboundPackets": {
+        "0": {
+          "id": 0,
+          "clazz": 3001,
+          "nmsName": "PacketLoginOutDisconnect"
+        },
+        "1": {
+          "id": 1,
+          "clazz": 3002,
+          "nmsName": "PacketLoginOutEncryptionBegin"
+        },
+        "2": {
+          "id": 2,
+          "clazz": 3004,
+          "nmsName": "PacketLoginOutSuccess"
+        },
+        "3": {
+          "id": 3,
+          "clazz": 3003,
+          "nmsName": "PacketLoginOutSetCompression"
+        },
+        "4": {
+          "id": 4,
+          "clazz": 3005,
+          "nmsName": "PacketLoginOutCustomPayload"
         }
       }
     }

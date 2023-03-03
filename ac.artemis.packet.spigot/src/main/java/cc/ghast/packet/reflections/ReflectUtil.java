@@ -330,9 +330,11 @@ public class ReflectUtil {
                 Reflection.getMinecraftClass("ItemStack");
         ITEM_TYPE_CLAZZ = Reflection.NEW_NMS ? Reflection.getMinecraftClass("item.Item", "world") :
                 Reflection.getMinecraftClass("Item");
-        GET_NBT_TAG_FROM_ITEMSTACK_METHOD = Reflection.getMethod(ITEM_NMS_CLAZZ, "getTag");
+        GET_NBT_TAG_FROM_ITEMSTACK_METHOD = Reflection.VERSION_NUM >= 18 ? Reflection.getMethod(ITEM_NMS_CLAZZ, NBT_COMPOUND_CLAZZ, 0) :
+                Reflection.getMethod(ITEM_NMS_CLAZZ, "getTag");
         GET_HANDLE_ITEM = Reflection.getField(CRAFT_ITEM_CLAZZ, "handle", ITEM_NMS_CLAZZ);
-        GET_ITEM_FROM_ID_METHOD = Reflection.getMethod(ITEM_TYPE_CLAZZ, "getById", int.class);
+        GET_ITEM_FROM_ID_METHOD = Reflection.VERSION_NUM >= 18 ? Reflection.getMethod(ITEM_TYPE_CLAZZ, ITEM_TYPE_CLAZZ, 0, int.class) :
+                Reflection.getMethod(ITEM_TYPE_CLAZZ, "getById", int.class);
 
         if (ServerUtil.getGameVersion().isAbove(ProtocolVersion.V1_14)) {
             ITEM_NMS_CONSTRUCTOR = Reflection.getConstructor(ITEM_NMS_CLAZZ,

@@ -18,8 +18,8 @@ public final class Reflection {
     // Deduce the net.minecraft.server.v* package
     public static final String OBC_PREFIX = Bukkit.getServer().getClass().getPackage().getName();
     public static final String VERSION = OBC_PREFIX.replace("org.bukkit.craftbukkit", "").replace(".", "");
-    private static final int version = Integer.parseInt(VERSION.split("_")[1]);
-    public static final boolean NEW_NMS = version >= 17;
+    public static final int VERSION_NUM = Integer.parseInt(VERSION.split("_")[1]);
+    public static final boolean NEW_NMS = VERSION_NUM >= 17;
     public static final String NMS_PREFIX = NEW_NMS ? "net.minecraft.server" :
             OBC_PREFIX.replace("org.bukkit.craftbukkit", "net.minecraft.server");
 

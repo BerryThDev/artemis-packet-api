@@ -36,7 +36,13 @@ public class GPacketPlayServerExplosion extends GPacket implements PacketPlaySer
         this.posZ = byteBuf.readFloat();
         this.strength = byteBuf.readFloat();
 
-        final int size = byteBuf.readInt();
+        int size = 0;
+
+        if(version.isOrAbove(ProtocolVersion.V_1_19_3)) {
+            size = byteBuf.readVarInt();
+        } else {
+            size = byteBuf.readInt();
+        }
 
         this.affectedBlockPositions = Lists.newArrayListWithCapacity(size);
 

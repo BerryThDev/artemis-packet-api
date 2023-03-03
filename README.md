@@ -1,7 +1,7 @@
 <p align="center">
   <img width="50%" height="50%" src="https://i.imgur.com/I1nYfFf.png">
   <br>
-  <a><img alt="Server Version" src="https://img.shields.io/badge/Server%20Version-1.7.10%201.16.4-blue"></a>
+  <a><img alt="Server Version" src="https://img.shields.io/badge/Server%20Version-1.7.10%201.19.3-blue"></a>
   <a><img alt="Api Type" src="https://img.shields.io/badge/API-Bukkit-blue"></a>
   <a><img alt="Authors" src="https://img.shields.io/badge/Authors-Ghast-blue"></a>
   <a><img alt="Issues" src="https://img.shields.io/github/issues/artemisac/Artemis-Packet-API"></a>
