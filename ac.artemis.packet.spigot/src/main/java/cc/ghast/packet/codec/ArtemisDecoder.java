@@ -6,8 +6,12 @@ import ac.artemis.packet.protocol.ProtocolVersion;
 import ac.artemis.packet.spigot.utils.ServerUtil;
 import cc.ghast.packet.PacketManager;
 import cc.ghast.packet.buffer.types.Converters;
+import cc.ghast.packet.compat.ViaHook;
+import cc.ghast.packet.compat.ViaVersionHook;
 import cc.ghast.packet.exceptions.IncompatiblePipelineException;
 import cc.ghast.packet.profile.ArtemisProfile;
+import cc.ghast.packet.reflections.FieldAccessor;
+import cc.ghast.packet.reflections.Reflection;
 import cc.ghast.packet.utils.Chat;
 import cc.ghast.packet.wrapper.netty.MutableByteBuf;
 import cc.ghast.packet.wrapper.packet.login.GPacketLoginServerSuccess;
@@ -15,6 +19,8 @@ import cc.ghast.packet.buffer.ProtocolByteBuf;
 import cc.ghast.packet.wrapper.packet.ReadableBuffer;
 import ac.artemis.packet.spigot.wrappers.GPacket;
 import cc.ghast.packet.wrapper.packet.handshake.GPacketHandshakeClientSetProtocol;
+import com.viaversion.viaversion.api.connection.UserConnection;
+import com.viaversion.viaversion.bukkit.handlers.BukkitChannelInitializer;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
@@ -215,7 +221,7 @@ public class ArtemisDecoder extends ChannelDuplexHandler {
 
                 // Handle and collect the handshake
                 if (packet instanceof GPacketHandshakeClientSetProtocol){
-                    handleHandshake((GPacketHandshakeClientSetProtocol) packet);
+                    handleHandshake((GPacketHandshakeClientSetProtocol) packet, channel.pipeline());
                 }
                 else if (packet instanceof GPacketLoginServerSuccess) {
                     handleLoginSuccess((GPacketLoginServerSuccess) packet);
@@ -297,16 +303,35 @@ public class ArtemisDecoder extends ChannelDuplexHandler {
         return packetDataSerializer.getByteBuf();
     }
 
-    private void handleHandshake(GPacketHandshakeClientSetProtocol handshake){
+    private void handleHandshake(GPacketHandshakeClientSetProtocol handshake, ChannelPipeline pipeline){
         final ProtocolVersion version = ProtocolVersion.getVersion(handshake.getProtocolVersion());
 
-        if (PacketManager.INSTANCE.getHookManager().getViaVersionHook() == null) {
+        ViaHook via = PacketManager.INSTANCE.getHookManager().getViaVersionHook();
+
+        if (via == null) {
             profile.setVersion(version);
         }
         final GPacketHandshakeClientSetProtocol.State state = handshake.getNextState();
         this.profile.setProtocol(state.equals(GPacketHandshakeClientSetProtocol.State.STATUS)
                 ? ProtocolState.STATUS : ProtocolState.LOGIN);
         this.profile.setVersion(version);
+
+        // There is an issue in ViaVersion where the api does not give any information about the player's version during the handshake
+        // We need to know what version they, using, so we use the proper generator on the packets we handle
+        // If we are using a modern via version (going to assume the old one works unless told otherwise)
+        if (via instanceof ViaVersionHook) {
+            // Use the via decoder channel
+            String viaDecoder = BukkitChannelInitializer.VIA_DECODER;
+            // Get it's class
+            ChannelHandler decodeHandler = pipeline.get(viaDecoder);
+            // It has a field which stores the player connection that it's using which stores the true protocol version
+            // Unfortunately this field is private so have to use reflection to get it
+            FieldAccessor<?> accessor = Reflection.getField(decodeHandler.getClass(), "connection", 0);
+            UserConnection connection = (UserConnection) accessor.get(decodeHandler);
+
+            // Now we can set the protocol to the proper version, so we know what generator to use
+            profile.setVersion(ProtocolVersion.getVersion(connection.getProtocolInfo().getProtocolVersion()));
+        }
 
         profile.setGenerator(ac.artemis.packet.PacketManager.getApi().getGenerator(version));
     }
